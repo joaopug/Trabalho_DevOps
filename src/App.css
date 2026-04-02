@@ -31,8 +31,12 @@ header {
 }
 
 .carrinhoEQtdeTotal {
+    width: 15rem;
+  display: flex;
   cursor: pointer;
   margin-right: 2rem;
+  align-items: center;
+  gap: 3rem;
 }
 
 .carrinhoEQtdeTotal img {
@@ -40,9 +44,6 @@ header {
 }
 
 .carrinhoEQtdeTotal h1 {
-  position: absolute;
-  top: 115px;
-  right: 140px;
 }
 
 .banana {
