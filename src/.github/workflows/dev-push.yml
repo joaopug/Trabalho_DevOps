@@ -1,0 +1,17 @@
+name: Pipeline DEV
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  validar-dev:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Validar boas práticas no código
+       run: npm run lint
+     - name: Rodar testes automatizados
+       run: npm run test --coverage
+     - name: Compilar o código
+       run: npm run buil
