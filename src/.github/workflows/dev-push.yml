@@ -14,4 +14,4 @@ jobs:
      - name: Rodar testes automatizados
        run: npm run test --coverage
      - name: Compilar o código
-       run: npm run buil
+       run: npm run build
