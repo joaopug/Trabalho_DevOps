@@ -13,8 +13,7 @@ function App() {
   const [bMacas, setBMacas] = useState(0);
   const [bBuracoNegros, setBBuracoNegro] = useState(0);
   const [totBananas, setTotBananas] = useState(0);
-  const [paginaCarrinho, setPaginaCarrinho] = useState(false);
-  const [paginaMercado, setPaginaMercado] = useState(true);
+  const [pagina, setPagina] = useState(1);
 
   const addBanana = (tipoBanana) => {
     switch (tipoBanana) {
@@ -39,18 +38,16 @@ function App() {
     // console.log("Bananas totais:", totBananas);
   };
 
-  const controlePaginas = (tipoPagina) => {
+  /*   const controlePaginas = (tipoPagina) => {
     switch (tipoPagina) {
       case 1:
-        setPaginaMercado(false);
-        setPaginaCarrinho(true);
+        setPagina(false);
         break;
       case 2:
-        setPaginaMercado(true);
-        setPaginaCarrinho(false);
+        setPagina(true);
         break;
     }
-  };
+  }; */
 
   const textoBotao = "Adicionar e Comprar";
 
@@ -58,14 +55,45 @@ function App() {
     <>
       <header>Mercado de bananas</header>
       <body>
-        {paginaMercado && (
+        <div className="menu">
+          <h1 onClick={() => setPagina(0)}>Home</h1>
+          <h1 onClick={() => setPagina(1)}>Bananas</h1>
+          <h1 onClick={() => setPagina(2)}>Sobre nós</h1>
+          <h1>Banana do dia</h1>
+        </div>
+        {pagina == 0 && (
+          <div className="conjuntoBananas">
+            <div className="setorBeneficios">
+              <h1>Benefícios da banana:</h1>
+              <div className="beneficios">
+                <ul>
+                  <li>Ajuda músculos e coração</li>
+                  <li>Fonte rápida de energia</li>
+                  <li>Auxilia no funcionamento do intestino</li>
+                  <li>Ajuda a evitar cãibras</li>
+                  <li>Dá sensação de saciedade</li>
+                  <li>Possui vitaminas B6 e C</li>
+                  <li>Pode ajudar no humor e no sono</li>
+                  <li>Boa para pré e pós-treino</li>
+                  <li>Ajuda no controle da pressão arterial</li>
+                  <li>Contém antioxidantes</li>
+                </ul>
+              </div>
+            </div>
+            <div className="maisVendida">
+              <h1>Banana mais vendida:</h1>
+              <div className="destaque">
+                <h1>Banana Maçã</h1>
+                <img src={bMaca} />
+              </div>
+            </div>
+          </div>
+        )}
+        {pagina == 1 && (
           <div className="conjuntoBananas">
             <div className="subTituloEIcone">
               <h1>Bananas diponíveis:</h1>
-              <div
-                className="carrinhoEQtdeTotal"
-                onClick={() => controlePaginas(1)}
-              >
+              <div className="carrinhoEQtdeTotal" onClick={() => setPagina(5)}>
                 <img src={carrinho} />
                 <h1>{totBananas}</h1>
               </div>
@@ -100,14 +128,19 @@ function App() {
             </div>
           </div>
         )}
-        {paginaCarrinho && (
+        {pagina == 2 && (
+          <div className="conjuntoBananas">
+            <h1>Especialistas em bananas frescas e selecionadas.</h1>
+          </div>
+        )}
+        {pagina == 5 && (
           <>
             <div>
               <div className="subTitCarEIcone">
                 <img
                   className="iconeVoltar"
                   src={botaoVoltar}
-                  onClick={() => controlePaginas(2)}
+                  onClick={() => setPagina(1)}
                 />
                 <h1>Estatísticas de compra:</h1>
               </div>
