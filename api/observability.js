@@ -10,19 +10,38 @@ export function createTraceId() {
   return crypto.randomUUID();
 }
 
+function getBrasiliaTimestamp() {
+  return new Date()
+    .toLocaleString("sv-SE", {
+      timeZone: "America/Sao_Paulo",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    })
+    .replace(" ", "T");
+}
+
 export function createHealthPayload() {
   return {
     status: "ok",
     service: "banana-health-service",
-    timestamp: new Date().toISOString(),
+    timestamp: getBrasiliaTimestamp(),
     uptime_seconds: Math.round(process.uptime()),
     memory_mb: Math.round(process.memoryUsage().rss / 1024 / 1024),
   };
 }
 
-export function createLogLine({ level = "info", message, traceId, details = {} }) {
+export function createLogLine({
+  level = "info",
+  message,
+  traceId,
+  details = {},
+}) {
   return JSON.stringify({
-    timestamp: new Date().toISOString(),
+    timestamp: getBrasiliaTimestamp(),
     level,
     traceId,
     message,
