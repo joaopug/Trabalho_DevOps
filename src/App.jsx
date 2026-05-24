@@ -6,6 +6,7 @@ import bBuracoNegro from "./assets/bananaBN.png";
 import carrinho from "./assets/carrinho.png";
 import botaoVoltar from "./assets/botaoVoltar.png";
 import "./App.css";
+import { sendFrontendLog } from "./observability";
 
 function App() {
   const [bAzuis, setBAzuis] = useState(0);
@@ -15,19 +16,28 @@ function App() {
   const [totBananas, setTotBananas] = useState(0);
   const [pagina, setPagina] = useState(1);
 
+  const trocarPagina = (novaPagina) => {
+    setPagina(novaPagina);
+    sendFrontendLog("Usuário trocou de página", { pagina: novaPagina });
+  };
+
   const addBanana = (tipoBanana) => {
     switch (tipoBanana) {
       case 1:
         setBAzuis(bAzuis + 1);
+        sendFrontendLog("Banana comprada", { tipo: "Banana Azul" });
         break;
       case 2:
         setBVermelhas(bVermelhas + 1);
+        sendFrontendLog("Banana comprada", { tipo: "Banana Vermelha" });
         break;
       case 3:
         setBMacas(bMacas + 1);
+        sendFrontendLog("Banana comprada", { tipo: "Banana Maçã" });
         break;
       case 4:
         setBBuracoNegro(bBuracoNegros + 1);
+        sendFrontendLog("Banana comprada", { tipo: "Banana Buraco Negro" });
         break;
     }
     setTotBananas(totBananas + 1);
@@ -56,9 +66,9 @@ function App() {
       <header>Mercado de bananas</header>
       <body>
         <div className="menu">
-          <h1 onClick={() => setPagina(0)}>Home</h1>
-          <h1 onClick={() => setPagina(1)}>Bananas</h1>
-          <h1 onClick={() => setPagina(2)}>Sobre nós</h1>
+          <h1 onClick={() => trocarPagina(0)}>Home</h1>
+          <h1 onClick={() => trocarPagina(1)}>Bananas</h1>
+          <h1 onClick={() => trocarPagina(2)}>Sobre nós</h1>
           <h1>Banana do dia</h1>
         </div>
         {pagina == 0 && (
