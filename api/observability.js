@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import process from "node:process";
 
 const LOG_DIR = path.resolve("logs");
 const LOG_FILE = path.join(LOG_DIR, "app.log");
