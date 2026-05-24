@@ -1,13 +1,13 @@
 import http from "node:http";
 import { createHealthPayload, createTraceId, writeLog } from "./observability.js";
 
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
 function sendJson(res, statusCode, data, traceId) {
   res.writeHead(statusCode, {
     "Content-Type": "application/json; charset=utf-8",
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS, HEAD",
     "Access-Control-Allow-Headers": "Content-Type, X-Trace-Id",
     "X-Trace-Id": traceId,
   });
