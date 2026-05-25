@@ -7,6 +7,7 @@ import carrinho from "./assets/carrinho.png";
 import botaoVoltar from "./assets/botaoVoltar.png";
 import "./App.css";
 import { sendFrontendLog } from "./observability";
+import fotoFundador from "./assets/fundador.png"
 
 function App() {
   const [bAzuis, setBAzuis] = useState(0);
@@ -139,9 +140,57 @@ function App() {
           </div>
         )}
         {pagina == 2 && (
-          <div className="conjuntoBananas">
-            <h1>Especialistas em bananas frescas e selecionadas.</h1>
-          </div>
+          <main className="paginaSobreNos">
+            <section className="sobreNos">
+              <h1>Sobre Nós</h1>
+
+              <p>
+                A Banana Market nasceu com o objetivo de aproximar produtores,
+                comerciantes e consumidores, oferecendo bananas selecionadas com
+                qualidade, agilidade e confiança.
+              </p>
+            </section>
+
+            <section className="sobreNosHitoria">
+              <div className="sobreNosHitoriaTexto">
+                <h2>Nossa História</h2>
+
+                <p>
+                  Tudo começou em uma pequena feira do interior, onde nosso
+                  fundador percebeu que muitos produtores tinham frutas de
+                  excelente qualidade, mas enfrentavam dificuldade para vender
+                  seus produtos de forma organizada.
+                </p>
+
+                <p>
+                  Com uma Kombi antiga, algumas caixas de banana e muita vontade
+                  de crescer, a primeira entrega foi feita para mercados locais.
+                  O cuidado com a seleção das frutas e o compromisso com os
+                  prazos fizeram a Mercado de Bananas ganhar confiança rapidamente.
+                </p>
+
+                <p>
+                  Hoje, seguimos com o mesmo propósito: valorizar o produtor,
+                  facilitar a distribuição e garantir que a banana chegue fresca
+                  até o consumidor final.
+                </p>
+              </div>
+
+              <div className="fundador">
+                <div className="fotoFundador">
+                  <img src={fotoFundador}/>
+                </div>
+
+                <h3>João Banana</h3>
+
+                <p>
+                  Fundador da Mercado de Bananas, conhecido por sua visão simples e
+                  eficiente: transformar uma fruta comum em uma operação
+                  organizada, confiável e acessível.
+                </p>
+              </div>
+            </section>
+          </main>
         )}
         {pagina == 5 && (
           <>

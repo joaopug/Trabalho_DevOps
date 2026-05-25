@@ -6,7 +6,7 @@ body {
   justify-content: center;
 }
 
-.menu{
+.menu {
   display: flex;
   flex-direction: row;
   gap: 5rem;
@@ -29,7 +29,7 @@ body {
   color: white;
 }
 
-.setorBeneficios{
+.setorBeneficios {
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -43,7 +43,7 @@ body {
   margin: 0;
 }
 
-.beneficios{
+.beneficios {
   margin: 0;
   background-color: black;
   padding: 2rem;
@@ -51,14 +51,14 @@ body {
   color: white;
 }
 
-.maisVendida{
+.maisVendida {
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 1.4rem;
 }
 
-.destaque{
+.destaque {
   background-color: black;
   border-radius: 2rem;
   color: white;
@@ -93,7 +93,7 @@ header {
 }
 
 .carrinhoEQtdeTotal {
-    width: 15rem;
+  width: 15rem;
   display: flex;
   cursor: pointer;
   margin-right: 2rem;
@@ -103,9 +103,6 @@ header {
 
 .carrinhoEQtdeTotal img {
   width: 8rem;
-}
-
-.carrinhoEQtdeTotal h1 {
 }
 
 .banana {
@@ -200,6 +197,88 @@ header {
 
 .totalBanana {
   margin-left: 10rem;
+}
+
+.sobreNos {
+  max-width: 900px;
+  margin: 20px auto 40px;
+  text-align: center;
+  background: #000000;
+  border-radius: 18px;
+  padding: 2px;
+}
+
+.sobreNos h1 {
+  font-size: 42px;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.sobreNos p {
+  font-size: 22px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.sobreNosHitoria {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.sobreNosHitoriaTexto {
+  background: #000000;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.sobreNosHitoriaTexto h2 {
+  font-size: 28px;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.sobreNosHitoriaTexto p {
+  font-size: 22px;
+  line-height: 1.7;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.fundador {
+  background: #000000;
+  padding: 24px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.fotoFundador {
+  width: 100%;
+  height: 260px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.fotoFundador img{
+  width: 90%;
+  border-radius: 1rem;
+}
+
+.fundador h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.fundador p {
+  font-size: 20px;
+  line-height: 1.5;
+  color: #ffffff;
 }
 
 footer {
