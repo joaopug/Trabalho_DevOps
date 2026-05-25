@@ -9,7 +9,48 @@ import "./App.css";
 import { sendFrontendLog } from "./observability";
 import fotoFundador from "./assets/fundador.png";
 
+const bananas = [
+  {
+    nome: "Banana Azul",
+    imagem: bAzul,
+  },
+  {
+    nome: "Banana Vermelha",
+    imagem: bVermelha,
+  },
+  {
+    nome: "Banana Maçã",
+    imagem: bMaca,
+  },
+  {
+    nome: "Banana Buraco Negro",
+    imagem: bBuracoNegro,
+  },
+];
+
+function pegarData() {
+  return new Date().toLocaleDateString("en-CA", {
+    timeZone: "America/Sao_Paulo",
+  });
+}
+
+function escolherBananaDoDia() {
+  const data = pegarData();
+
+  let soma = 0;
+
+  for (let i = 0; i < data.length; i++) {
+    soma += data.charCodeAt(i);
+  }
+
+  const indice = soma % bananas.length;
+
+  return bananas[indice];
+}
+
 function App() {
+  const bananaDoDia = escolherBananaDoDia();
+
   const [bAzuis, setBAzuis] = useState(0);
   const [bVermelhas, setBVermelhas] = useState(0);
   const [bMacas, setBMacas] = useState(0);
@@ -103,13 +144,9 @@ function App() {
   }
 
   useEffect(() => {
-    const bananaSelecionada = escolherBananaDoDia();
-
-    setBananaDoDia(bananaSelecionada);
-
     sendFrontendLog("Banana do dia escolhida", {
       page: 1,
-      banana: bananaSelecionada.nome,
+      banana: bananaDoDia.nome,
     });
   }, []);
 
