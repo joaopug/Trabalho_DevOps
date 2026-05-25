@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import bAzul from "./assets/bananaAzul.png";
 import bVermelha from "./assets/bananaVermelha.png";
 import bMaca from "./assets/bananaMaca.png";
@@ -7,15 +7,27 @@ import carrinho from "./assets/carrinho.png";
 import botaoVoltar from "./assets/botaoVoltar.png";
 import "./App.css";
 import { sendFrontendLog } from "./observability";
-import fotoFundador from "./assets/fundador.png"
+import fotoFundador from "./assets/fundador.png";
 
 function App() {
   const [bAzuis, setBAzuis] = useState(0);
   const [bVermelhas, setBVermelhas] = useState(0);
   const [bMacas, setBMacas] = useState(0);
   const [bBuracoNegros, setBBuracoNegro] = useState(0);
+  const [bananaDoDia, setBananaDoDia] = useState(null);
   const [totBananas, setTotBananas] = useState(0);
   const [pagina, setPagina] = useState(1);
+
+  useEffect(() => {
+    const bananaSelecionada = escolherBananaDoDia();
+
+    setBananaDoDia(bananaSelecionada);
+
+    sendFrontendLog("Banana do dia escolhida", {
+      page: 1,
+      banana: bananaSelecionada.nome,
+    });
+  }, []);
 
   const trocarPagina = (novaPagina) => {
     setPagina(novaPagina);
@@ -62,6 +74,45 @@ function App() {
 
   const textoBotao = "Adicionar e Comprar";
 
+  const bananas = [
+    {
+      nome: "Banana Azul",
+      imagem: bAzul,
+    },
+    {
+      nome: "Banana Vermelha",
+      imagem: bVermelha,
+    },
+    {
+      nome: "Banana Maça",
+      imagem: bMaca,
+    },
+    {
+      nome: "Banana Buraco Negro",
+      imagem: bBuracoNegro,
+    },
+  ];
+
+  function pegarData() {
+    return new Date().toLocaleDateString("en-CA", {
+      timeZone: "America/Sao_Paulo",
+    });
+  }
+
+  function escolherBananaDoDia() {
+    const data = pegarData();
+
+    let soma = 0;
+
+    for (let i = 0; i < data.length; i++) {
+      soma += data.charCodeAt(i);
+    }
+
+    const indice = soma % bananas.length;
+
+    return bananas[indice];
+  }
+
   return (
     <>
       <header>Mercado de bananas</header>
@@ -70,7 +121,7 @@ function App() {
           <h1 onClick={() => trocarPagina(0)}>Home</h1>
           <h1 onClick={() => trocarPagina(1)}>Bananas</h1>
           <h1 onClick={() => trocarPagina(2)}>Sobre nós</h1>
-          <h1>Banana do dia</h1>
+          <h1 onClick={() => trocarPagina(3)}>Banana do dia</h1>
         </div>
         {pagina == 0 && (
           <div className="conjuntoBananas">
@@ -166,7 +217,8 @@ function App() {
                   Com uma Kombi antiga, algumas caixas de banana e muita vontade
                   de crescer, a primeira entrega foi feita para mercados locais.
                   O cuidado com a seleção das frutas e o compromisso com os
-                  prazos fizeram a Mercado de Bananas ganhar confiança rapidamente.
+                  prazos fizeram a Mercado de Bananas ganhar confiança
+                  rapidamente.
                 </p>
 
                 <p>
@@ -178,19 +230,37 @@ function App() {
 
               <div className="fundador">
                 <div className="fotoFundador">
-                  <img src={fotoFundador}/>
+                  <img src={fotoFundador} />
                 </div>
 
                 <h3>João Banana</h3>
 
                 <p>
-                  Fundador da Mercado de Bananas, conhecido por sua visão simples e
-                  eficiente: transformar uma fruta comum em uma operação
-                  organizada, confiável e acessível.
+                  Fundador da Mercado de Bananas, conhecido por sua visão
+                  simples e eficiente: transformar uma fruta comum em uma
+                  operação organizada, confiável e acessível.
                 </p>
               </div>
             </section>
           </main>
+        )}
+        {pagina == 3 && (
+          <>
+            <div className="conjuntoBananas">
+                <section className="bananaDoDia">
+                  <h1>Banana do Dia</h1>
+
+                  <p>A banana escolhida para hoje é:</p>
+
+                  <img
+                    src={bananaDoDia.imagem}
+                    alt={bananaDoDia.nome}
+                  />
+
+                  <strong>{bananaDoDia.nome}</strong>
+                </section>
+            </div>
+          </>
         )}
         {pagina == 5 && (
           <>
