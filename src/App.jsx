@@ -55,7 +55,6 @@ function App() {
   const [bVermelhas, setBVermelhas] = useState(0);
   const [bMacas, setBMacas] = useState(0);
   const [bBuracoNegros, setBBuracoNegro] = useState(0);
-  const [bananaDoDia, setBananaDoDia] = useState(null);
   const [totBananas, setTotBananas] = useState(0);
   const [pagina, setPagina] = useState(1);
 
