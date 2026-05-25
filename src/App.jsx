@@ -18,17 +18,6 @@ function App() {
   const [totBananas, setTotBananas] = useState(0);
   const [pagina, setPagina] = useState(1);
 
-  useEffect(() => {
-    const bananaSelecionada = escolherBananaDoDia();
-
-    setBananaDoDia(bananaSelecionada);
-
-    sendFrontendLog("Banana do dia escolhida", {
-      page: 1,
-      banana: bananaSelecionada.nome,
-    });
-  }, []);
-
   const trocarPagina = (novaPagina) => {
     setPagina(novaPagina);
     sendFrontendLog("Usuário trocou de página", { pagina: novaPagina });
@@ -112,6 +101,17 @@ function App() {
 
     return bananas[indice];
   }
+
+  useEffect(() => {
+    const bananaSelecionada = escolherBananaDoDia();
+
+    setBananaDoDia(bananaSelecionada);
+
+    sendFrontendLog("Banana do dia escolhida", {
+      page: 1,
+      banana: bananaSelecionada.nome,
+    });
+  }, []);
 
   return (
     <>
@@ -247,18 +247,15 @@ function App() {
         {pagina == 3 && (
           <>
             <div className="conjuntoBananas">
-                <section className="bananaDoDia">
-                  <h1>Banana do Dia</h1>
+              <section className="bananaDoDia">
+                <h1>Banana do Dia</h1>
 
-                  <p>A banana escolhida para hoje é:</p>
+                <p>A banana escolhida para hoje é:</p>
 
-                  <img
-                    src={bananaDoDia.imagem}
-                    alt={bananaDoDia.nome}
-                  />
+                <img src={bananaDoDia.imagem} alt={bananaDoDia.nome} />
 
-                  <strong>{bananaDoDia.nome}</strong>
-                </section>
+                <strong>{bananaDoDia.nome}</strong>
+              </section>
             </div>
           </>
         )}
