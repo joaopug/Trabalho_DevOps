@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "api": "node api/server.js",
     "lint": "eslint .",
+    "test": "node --test",
     "preview": "vite preview"
   },
   "dependencies": {
